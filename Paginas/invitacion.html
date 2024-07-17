@@ -18,7 +18,7 @@
                <div class="card__data">
                   <span class="card__description">Cena Romántica</span>
                   <h2 class="card__title">Restaurante</h2>
-                  <button class="card__button" onclick="sendWhatsAppMessage('restaurante')">Confirmar</button>
+                <button class="card__button" onclick="sendWhatsAppMessage('disco')">Confirmar</button>
                </div>
             </article>
 
@@ -26,9 +26,9 @@
                <img src="assets/img/landscape-2.png" alt="image" class="card__img">
 
                <div class="card__data">
-                  <span class="card__description">Poon Hill, Nepal</span>
-                  <h2 class="card__title">Starry Night</h2>
-                  <a href="#" class="card__button">Read More</a>
+                  <span class="card__description">Noche de Baile</span>
+                  <h2 class="card__title">Deembow</h2>
+                  <button class="card__button" onclick="sendWhatsAppMessage('disco')">Confirmar</button>
                </div>
             </article>
 
@@ -54,9 +54,21 @@
 
         function sendWhatsAppMessage(option) {
             const messages = {
-                'restaurante': 'Restaurante',
-                'disco': 'Disco',
-                'cine': 'Cine'
+                'restaurante': [
+                    `¡Hola mi amor! 🌹 ${girlfriendName}. Has aceptado y elegido salir al Restaurante, lo cual me hace muy feliz porque cada momento a tu lado es especial.\n\nDirección: 📍 `,
+                    `Querida ${girlfriendName}, estoy emocionado de cenar contigo en el Restaurante. La dirección es: 📍 `,
+                    `${girlfriendName}, no puedo esperar para nuestra cena en el Restaurante. Aquí nos veremos: 📍 `
+                ],
+                'disco': [
+                    `¡Hola mi amor! 🌹 ${girlfriendName}. Has aceptado y elegido salir a la Disco, lo cual me hace muy feliz porque cada momento a tu lado es especial.\n\nDirección: 📍 `,
+                    `Querida ${girlfriendName}, vamos a tener una noche de baile en la Disco. La dirección es: 📍 `,
+                    `${girlfriendName}, prepárate para una noche increíble en la Disco. Aquí nos veremos: 📍 `
+                ],
+                'hotel': [
+                    `¡Hola mi amor! 🌹 ${girlfriendName}. Has aceptado y elegido una escapada romántica al Hotel, lo cual me hace muy feliz porque cada momento a tu lado es especial.\n\nDirección: 📍 `,
+                    `Querida ${girlfriendName}, vamos a disfrutar de una noche especial en el Hotel. La dirección es: 📍 `,
+                    `${girlfriendName}, no puedo esperar para nuestra escapada romántica en el Hotel 💥🔥. Aquí nos veremos: 📍 `
+                ]
             };
 
             const addresses = {
@@ -65,15 +77,9 @@
                 'cine': 'https://goo.gl/maps/cinema_address'
             };
 
-            const finalMessage = `¡Hola mi amor! 🌹  ${girlfriendName}. Has aceptado y elegido salir al ${messages[option]}, lo cual me hace muy feliz porque cada momento a tu lado es especial.
-            Dirección: 📍 ${addresses[option]}
-📋 **Requisitos:**
-1. Llevar muchas ganas de pasarla bien y disfrutar. 🎉
-2. Venir con tu mejor sonrisa (¡aunque siempre la tienes!). 😁
-3. Y lo más importante... ¡prepárate para soportar mis chistes malos! 😄
-
-Con mucho cariño, tu querido novio. 💖`;
-
+            const randomMessage = messages[option][Math.floor(Math.random() * messages[option].length)];
+            const address = addresses[option];
+            const finalMessage = `${randomMessage}${address}\n\n📋 **Requisitos:**\n1. Llevar muchas ganas de pasarla bien y disfrutar. 🎉\n2. Venir con tu mejor sonrisa (¡aunque siempre la tienes!). 😁\n3. Y lo más importante... ¡prepárate para soportar mis chistes malos! 😄\n\nCon mucho cariño, tu querido novio. 💖`;
 
             const phoneNumber = '51981912809'; // Reemplaza con el número de teléfono destino (incluyendo código de país)
             const encodedMessage = encodeURIComponent(finalMessage);
